@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script type="text/javascript">
+
+        const count = 0;  //TODO: where to declare this variable?
+        $("#submit-btn").on("click", function (event) {
+            event.preventDefault();
+            var newReservation = {
+                name: $("#name").val().trim(),
+                phone: $("#phone").val().trim(),
+                email: $("#email").val().trim(),
+                uniqID: $("#uniqID").val().trim()
+                count++;
+             };
+        if (count < 6) {
+            $.post("/api/tables/", newReservation)
+                .then(function (data) {
+                    console.log("tables.html", data);
+                    alert("Reservation confirmed");
+                });
+        } else {
+            $.post("/api/waitlist/", newReservation)
+                .then(function (data) {
+                    console.log("tables.html", data);
+                    alert("You're on the wait list");
+                });
+                }   
+        });
+    </script>
+
+</body>
+
+</html>
