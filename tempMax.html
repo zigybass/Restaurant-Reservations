@@ -11,7 +11,7 @@
 <body>
 
     <script type="text/javascript">
-
+        //----------------------Gather user info on submit click-------------------
         const count = 0;  //TODO: where to declare this variable?
         $("#submit-btn").on("click", function (event) {
             event.preventDefault();
@@ -20,22 +20,56 @@
                 phone: $("#phone").val().trim(),
                 email: $("#email").val().trim(),
                 uniqID: $("#uniqID").val().trim()
-                count++;
-             };
-        if (count < 6) {
-            $.post("/api/tables/", newReservation)
-                .then(function (data) {
+            };
+            console.log(newReservation);
+            count++;
+
+            if (count < 6) {
+                $.post("/api/tables/", newReservation, (function (data) {
                     console.log("tables.html", data);
                     alert("Reservation confirmed");
                 });
-        } else {
-            $.post("/api/waitlist/", newReservation)
-                .then(function (data) {
-                    console.log("tables.html", data);
-                    alert("You're on the wait list");
-                });
-                }   
+            } else {
+                $.post("/api/waitlist/", newReservation)
+                    .then(function (data) {
+                        console.log("tables.html", data);
+                        alert("You're on the wait list");
+                    });
+            }
+            //Clear Form after post
+            $("#name").val("");
+            $("#phone").val("");
+            $("#email").val("");
+            $("#uniqID").val("");
         });
+
+        //----------------Update DOM with User entered------------------------
+
+        //------update reserved table list---------------
+        for (let i = 0; i < reservationArr.length; i++) {
+            const reserveDivID = $("<div>");
+            reserveDivID.addClass("list");
+            reserveDivID.attr("tableNum-" + i + 1);
+            $("#reservedTable").append(reserveDivID);
+            tableCnt = i + 1;
+            $(#"tableNum-" + i+1).append(`<h3 id="customer-label"><span id="tableCnt">` + 
+                tableCnt + "</span>" + reserveDivID[i].uniqID + "</h3>");
+
+            }
+
+        //------update wait list----------------------------
+        for (let i = 0; i < waitListArr.length; i++) {
+            const waitDivID = $("<div>");
+            waitDivID.addClass("list");
+            waitDivID.attr("waitNum-" + i + 1);
+            $("#reservedTable").append(waitDivID);
+            waitCnt = i + 1;    
+            $(#"waitNum-" + i+1).append(`<h3 id="customer-label"><span id="waitCnt">` + 
+                waitCnt + "</span>" + waitDivID[i].uniqID + "</h3>");
+
+        }
+
+
     </script>
 
 </body>
