@@ -2,36 +2,51 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
+  <meta charset="UTF-8">
+  <title>Splash Page</title>
+
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <title>Splash Page</title>
+
 </head>
 
 <body>
 
-    <div class="container">
-        <row class="row">
-            <column class="col justify-content-md-center">
-                <div class="jumbotron">
-                    <h1 class="display-4">Hot Restaurant</h1>
-                    <hr class="my-4">
-                    <p>Current Reservations and Waiting List.</p>
-                    <a class="btn btn-primary btn-lg" href="./reservations.html" role="button">Make Reservation</a>
-                    <a class="btn btn-primary btn-lg" href="./tables.html" role="button"> View Tables</a>
-                </div>
-            </column>
-        </row>
+
+  <div class="container">
+
+    <div class="jumbotron">
+      <h1 class="text-center"><span class="fa fa-fire"></span> Hot Restaurant</h1>
+      <hr>
+      <h2 class="text-center">Book your seat before they all are gone!</h2>
+      <br>
+
+      <div class="text-center">
+        <a href="/tables"><button class="btn btn-lg btn-primary"><span class="fa fa-list-alt"></span> View Tables</button></a>
+        <a href="/reserve"><button class="btn btn-lg btn-danger"><span class="fa fa-credit-card"></span> Make Reservation</button></a>
+      </div>
+
     </div>
 
+    <footer class="footer">
+      <div class="container">
+        <p><a href="/api/tables">API Table Link</a> | <a href="/api/waitlist">API Wait List</a>
+      </div>
+    </footer>
+
+  </div>
 
 
 </body>
 
-<script>
-
-</script>
 
 </html>
