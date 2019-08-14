@@ -49,10 +49,10 @@
         for (let i = 0; i < reservationArr.length; i++) {
             const reserveDivID = $("<div>");
             reserveDivID.addClass("list");
-            reserveDivID.attr("tableNum-" + i + 1);
+            reserveDivID.attr("tableNum-" + (i + 1));
             $("#reservedTable").append(reserveDivID);
             tableCnt = i + 1;
-            $(#"tableNum-" + i+1).append(`<h3 id="customer-label"><span id="tableCnt">` + 
+            $(#"tableNum-" + (i + 1)).append(`<h3 id="customer-label"><span id="tableCnt">` + 
                 tableCnt + "</span>" + reserveDivID[i].uniqID + "</h3>");
 
             }
@@ -61,14 +61,23 @@
         for (let i = 0; i < waitListArr.length; i++) {
             const waitDivID = $("<div>");
             waitDivID.addClass("list");
-            waitDivID.attr("waitNum-" + i + 1);
+            waitDivID.attr("waitNum-" + (i + 1));
             $("#reservedTable").append(waitDivID);
             waitCnt = i + 1;    
-            $(#"waitNum-" + i+1).append(`<h3 id="customer-label"><span id="waitCnt">` + 
+            $(#"waitNum-" + (i + 1)).append(`<h3 id="customer-label"><span id="waitCnt">` + 
                 waitCnt + "</span>" + waitDivID[i].uniqID + "</h3>");
 
         }
 
+//--------clear waitlist and table reservations
+
+$("#clearLink").on("click", function() {
+    clearLists();
+});
+
+function clearLists() {
+
+}
 
     </script>
 
