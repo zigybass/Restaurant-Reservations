@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 
 <style>
@@ -15,31 +17,56 @@
 
 <body>
 
-        <div class="container">
-                <row class="row">
-                    <column class="col justify-content-md-center">
-                        <div class="jumbotron">
-                                <h1 class="display-4">Hot Restaurant</h1>
-                                <hr class="my-4">
-                                <p>Current Reservations and Waiting List.</p>
-                                <a class="btn btn-primary btn-lg" href="#" role="button">View Tables</a>
-                                <a class="btn btn-primary btn-lg" href="#" role="button">Home</a>
-                              </div>
-                    </column>
-                </row>
-            </div>
+    <div class="container">
+        <row class="row">
+            <column class="col justify-content-md-center">
+                <div class="jumbotron">
+                    <h1 class="display-4">Hot Restaurant</h1>
+                    <hr class="my-4">
+                    <p>Current Reservations and Waiting List.</p>
+                    <a class="btn btn-primary btn-lg" href="./tables.html" role="button">View Tables</a>
+                    <a class="btn btn-primary btn-lg" href="./index.html" role="button">Home</a>
+                </div>
+            </column>
+        </row>
+    </div>
 
-
-            
-
-    
 
 
 </body>
 
 <script>
+    const count = 0;  //TODO: where to declare this variable?
+    $("#submit-btn").on("click", function (event) {
+        event.preventDefault();
+        var newReservation = {
+            name: $("#name").val().trim(),
+            phone: $("#phone").val().trim(),
+            email: $("#email").val().trim(),
+            uniqID: $("#uniqID").val().trim()
+        };
+        console.log(newReservation);
+        count++;
 
-
+        if (count < 6) {
+            $.post("/api/tables/", newReservation)
+                .then(function (data) {
+                    console.log("tables.html", data);
+                    alert("Reservation confirmed");
+                });
+        } else {
+            $.post("/api/waitlist/", newReservation)
+                .then(function (data) {
+                    console.log("tables.html", data);
+                    alert("You're on the wait list");
+                });
+        }
+        //Clear Form after post
+        $("#name").val("");
+        $("#phone").val("");
+        $("#email").val("");
+        $("#uniqID").val("");
+    });
 </script>
 
 </html>
