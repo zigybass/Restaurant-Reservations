@@ -25,7 +25,8 @@
             count++;
 
             if (count < 6) {
-                $.post("/api/tables/", newReservation, (function (data) {
+                $.post("/api/tables/", newReservation)
+                    .then(function (data) {
                     console.log("tables.html", data);
                     alert("Reservation confirmed");
                 });
@@ -76,7 +77,11 @@ $("#clearLink").on("click", function() {
 });
 
 function clearLists() {
-
+    $.post("/api/clearList/")
+                    .then(function (data) {
+                        console.log("tables.html", data);
+                        alert("You're on the wait list");
+                    });
 }
 
     </script>
