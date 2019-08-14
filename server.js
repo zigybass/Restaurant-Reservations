@@ -7,16 +7,26 @@ const path = require ('path');
 const app = express();
 
 // port 3000?
-const port = 8080;
+const port = 3000;
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-app.get('/', function (req, res){
-    res.send("Hello World");
+app.get('/', function(req, res){
+  res.sendFile(path.join(__dirname, 'index.html'));
 });
 
-app.listen(port);
+app.get('/reserve', function(req, res){
+  res.sendFile(path.join(__dirname, 'reserve.html'));
+});
+
+app.get('/tables', function(req, res){
+  res.sendFile(path.join(__dirname, 'tables.html'));
+});
+
+app.listen(port, function(){
+  console.log("listing at http://localhost:" + port);
+});
 
 // variable to hold
 
