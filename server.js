@@ -7,10 +7,7 @@ const path = require ('path');
 const app = express();
 
 // port 3000?
-const port = 8080;
-
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
+const port = 3000;
 
 // variable to hold
 
